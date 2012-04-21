@@ -1,6 +1,6 @@
 #%define main_release 69
 %define main_release 0.1
-%define samba_version 3.6.0
+%define samba_version 3.6.4
 %define tdb_version 1.2.9
 %define talloc_version 2.0.5
 #%define pre_release %nil
@@ -19,7 +19,7 @@ License: GPLv3+ and LGPLv3+
 Group: System Environment/Daemons
 URL: http://www.samba.org/
 
-Source: http://www.samba.org/samba/%{name}-%{samba_version}%{pre_release}.tar.gz
+Source: http://www.samba.org/samba/ftp/stable/%{name}-%{samba_version}%{pre_release}.tar.gz
 
 # Red Hat specific replacement-files
 Source1: samba.log
