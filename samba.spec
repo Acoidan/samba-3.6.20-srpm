@@ -1,6 +1,6 @@
 #%define main_release 69
 %define main_release 0.1
-%define samba_version 3.6.6
+%define samba_version 3.6.10
 %define tdb_version 1.2.9
 %define talloc_version 2.0.5
 #%define pre_release %nil
@@ -14,7 +14,7 @@ Summary: Server and Client software to interoperate with Windows machines
 Name: samba
 Epoch: 0
 Version: %{samba_version}
-Release: %{samba_release}.0
+Release: %{samba_release}
 License: GPLv3+ and LGPLv3+
 Group: System Environment/Daemons
 URL: http://www.samba.org/
@@ -54,9 +54,26 @@ Requires: logrotate >= 0:3.4
 BuildRoot: %{_tmppath}/%{name}-%{samba_version}-%{release}-root
 Requires(post): /sbin/chkconfig, /sbin/service
 Requires(preun): /sbin/chkconfig, /sbin/service
-BuildRequires: pam-devel, readline-devel, ncurses-devel, libacl-devel, krb5-devel, openldap-devel, openssl-devel, cups-devel, ctdb-devel
-BuildRequires: autoconf, gawk, popt-devel, gtk2-devel, libcap-devel, libuuid-devel, quota-devel
-BuildRequires: libtalloc-devel, libtdb-devel
+BuildRequires: autoconf
+BuildRequires: ctdb-devel
+BuildRequires: cups-devel
+BuildRequires: gawk
+BuildRequires: gtk2-devel
+BuildRequires: krb5-devel
+BuildRequires: libacl-devel
+BuildRequires: libcap-devel
+BuildRequires: libtalloc-devel
+BuildRequires: libtdb-devel
+BuildRequires: libuuid-devel
+BuildRequires: ncurses-devel
+BuildRequires: openldap-devel
+BuildRequires: openssl-devel
+BuildRequires: pam-devel
+# Use popt.h insted of popt-devel for RHEL 5, RHEL 4
+#BuildRequires: popt-devel
+BuildRequires: %{_includedir}/popt.h
+BuildRequires: quota-devel
+BuildRequires: readline-devel
 
 # Working around perl dependency problem from docs
 %define __perl_requires %{SOURCE999}
@@ -654,7 +671,15 @@ exit 0
 %{_datadir}/pixmaps/samba/logo-small.png
 
 %changelog
-* Thu Jun 28 2012 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.6-0.
+* Sun Dec 23 2012 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.10-0.1
+- Update to 3.6.10
+- Modify popt-devel dependency to /usr/include/popt.h, for RHEL 4 and 5
+
+* Tue Aug  7 2012 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.7.0.1
+- Update to 3.6.7
+- Modify popt-devel dependency to /usr/include/popt.h, for RHEL 4 and 5
+
+* Thu Jun 28 2012 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.6-0.1
 - Update to 3.6.6
 
 * Thu Aug 11 2011 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.0-0.1
