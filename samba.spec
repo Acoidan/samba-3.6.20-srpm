@@ -1,6 +1,6 @@
 #%define main_release 69
 %define main_release 0.1
-%define samba_version 3.6.10
+%define samba_version 3.6.11
 %define tdb_version 1.2.9
 %define talloc_version 2.0.5
 #%define pre_release %nil
@@ -671,6 +671,9 @@ exit 0
 %{_datadir}/pixmaps/samba/logo-small.png
 
 %changelog
+* Sun Dec 23 2012 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.11-0.1
+- Update to 3.6.11
+
 * Sun Dec 23 2012 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.10-0.1
 - Update to 3.6.10
 - Modify popt-devel dependency to /usr/include/popt.h, for RHEL 4 and 5
