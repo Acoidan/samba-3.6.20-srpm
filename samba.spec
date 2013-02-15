@@ -1,6 +1,6 @@
 #%define main_release 69
 %define main_release 0.1
-%define samba_version 3.6.11
+%define samba_version 3.6.12
 %define tdb_version 1.2.9
 %define talloc_version 2.0.5
 #%define pre_release %nil
@@ -305,77 +305,77 @@ make  debug2html smbfilter
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
-mkdir -p $RPM_BUILD_ROOT/sbin
-mkdir -p $RPM_BUILD_ROOT/usr/{sbin,bin}
-mkdir -p $RPM_BUILD_ROOT/%{_initrddir}
-mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/{pam.d,logrotate.d,security}
-mkdir -p $RPM_BUILD_ROOT/%{_lib}/security
-mkdir -p $RPM_BUILD_ROOT/var/lib/samba
-mkdir -p $RPM_BUILD_ROOT/var/lib/samba/private
-mkdir -p $RPM_BUILD_ROOT/var/lib/samba/winbindd_privileged
-mkdir -p $RPM_BUILD_ROOT/var/lib/samba/scripts
-mkdir -p $RPM_BUILD_ROOT/var/log/samba/old
-mkdir -p $RPM_BUILD_ROOT/var/spool/samba
-mkdir -p $RPM_BUILD_ROOT/%{_datadir}/swat/using_samba
-mkdir -p $RPM_BUILD_ROOT/var/run/winbindd
-mkdir -p $RPM_BUILD_ROOT/%{_libdir}/samba
-mkdir -p $RPM_BUILD_ROOT/%{_libdir}/pkgconfig
+mkdir -p %{buildroot}/sbin
+mkdir -p %{buildroot}/usr/{sbin,bin}
+mkdir -p %{buildroot}/%{_initrddir}
+mkdir -p %{buildroot}/%{_sysconfdir}/{pam.d,logrotate.d,security}
+mkdir -p %{buildroot}/%{_lib}/security
+mkdir -p %{buildroot}/var/lib/samba
+mkdir -p %{buildroot}/var/lib/samba/private
+mkdir -p %{buildroot}/var/lib/samba/winbindd_privileged
+mkdir -p %{buildroot}/var/lib/samba/scripts
+mkdir -p %{buildroot}/var/log/samba/old
+mkdir -p %{buildroot}/var/spool/samba
+mkdir -p %{buildroot}/%{_datadir}/swat/using_samba
+mkdir -p %{buildroot}/var/run/winbindd
+mkdir -p %{buildroot}/%{_libdir}/samba
+mkdir -p %{buildroot}/%{_libdir}/pkgconfig
 
 cd %samba_source
 
 %makeinstall \
-    BINDIR=$RPM_BUILD_ROOT%{_bindir} \
-    BASEDIR=$RPM_BUILD_ROOT%{_prefix} \
-    SBINDIR=$RPM_BUILD_ROOT%{_sbindir} \
-    DATADIR=$RPM_BUILD_ROOT%{_datadir} \
-    LOCKDIR=$RPM_BUILD_ROOT/var/lib/samba \
-    PRIVATEDIR=$RPM_BUILD_ROOT%{_sysconfdir}/samba \
-    LIBDIR=$RPM_BUILD_ROOT%{_libdir}/ \
-    MODULESDIR=$RPM_BUILD_ROOT%{_libdir}/samba \
-    CONFIGDIR=$RPM_BUILD_ROOT%{_sysconfdir}/samba \
-    PAMMODULESDIR=$RPM_BUILD_ROOT/%{_lib}/security \
-    MANDIR=$RPM_BUILD_ROOT%{_mandir} \
-    VARDIR=$RPM_BUILD_ROOT/var/log/samba \
-    CODEPAGEDIR=$RPM_BUILD_ROOT%{_libdir}/samba \
-    SWATDIR=$RPM_BUILD_ROOT%{_datadir}/swat \
-    SAMBABOOK=$RPM_BUILD_ROOT%{_datadir}/swat/using_samba \
-    PIDDIR=$RPM_BUILD_ROOT/var/run
+    BINDIR=%{buildroot}%{_bindir} \
+    BASEDIR=%{buildroot}%{_prefix} \
+    SBINDIR=%{buildroot}%{_sbindir} \
+    DATADIR=%{buildroot}%{_datadir} \
+    LOCKDIR=%{buildroot}/var/lib/samba \
+    PRIVATEDIR=%{buildroot}%{_sysconfdir}/samba \
+    LIBDIR=%{buildroot}%{_libdir}/ \
+    MODULESDIR=%{buildroot}%{_libdir}/samba \
+    CONFIGDIR=%{buildroot}%{_sysconfdir}/samba \
+    PAMMODULESDIR=%{buildroot}/%{_lib}/security \
+    MANDIR=%{buildroot}%{_mandir} \
+    VARDIR=%{buildroot}/var/log/samba \
+    CODEPAGEDIR=%{buildroot}%{_libdir}/samba \
+    SWATDIR=%{buildroot}%{_datadir}/swat \
+    SAMBABOOK=%{buildroot}%{_datadir}/swat/using_samba \
+    PIDDIR=%{buildroot}/var/run
 
 cd ..
 
 # Install other stuff
-install -m644 packaging/Fedora/smb.conf.default $RPM_BUILD_ROOT%{_sysconfdir}/samba/smb.conf
-install -m755 %samba_source/script/mksmbpasswd.sh $RPM_BUILD_ROOT%{_bindir}
-install -m644 packaging/Fedora/smbusers $RPM_BUILD_ROOT%{_sysconfdir}/samba/smbusers
-install -m755 packaging/Fedora/smbprint $RPM_BUILD_ROOT%{_bindir}
-install -m755 packaging/Fedora/smb.init $RPM_BUILD_ROOT%{_initrddir}/smb
-install -m755 packaging/Fedora/nmb.init $RPM_BUILD_ROOT%{_initrddir}/nmb
-install -m755 packaging/Fedora/winbind.init $RPM_BUILD_ROOT%{_initrddir}/winbind
-install -m644 packaging/Fedora/pam_winbind.conf $RPM_BUILD_ROOT%{_sysconfdir}/security
-#ln -s ../..%{_initrddir}/smb  $RPM_BUILD_ROOT%{_sbindir}/samba
-install -m644 packaging/Fedora/samba.pamd $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/samba
-install -m644 %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/samba
-echo 127.0.0.1 localhost > $RPM_BUILD_ROOT%{_sysconfdir}/samba/lmhosts
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/openldap/schema
-install -m644 examples/LDAP/samba.schema $RPM_BUILD_ROOT%{_sysconfdir}/openldap/schema/samba.schema
+install -m644 packaging/Fedora/smb.conf.default %{buildroot}%{_sysconfdir}/samba/smb.conf
+install -m755 %samba_source/script/mksmbpasswd.sh %{buildroot}%{_bindir}
+install -m644 packaging/Fedora/smbusers %{buildroot}%{_sysconfdir}/samba/smbusers
+install -m755 packaging/Fedora/smbprint %{buildroot}%{_bindir}
+install -m755 packaging/Fedora/smb.init %{buildroot}%{_initrddir}/smb
+install -m755 packaging/Fedora/nmb.init %{buildroot}%{_initrddir}/nmb
+install -m755 packaging/Fedora/winbind.init %{buildroot}%{_initrddir}/winbind
+install -m644 packaging/Fedora/pam_winbind.conf %{buildroot}%{_sysconfdir}/security
+#ln -s ../..%{_initrddir}/smb  %{buildroot}%{_sbindir}/samba
+install -m644 packaging/Fedora/samba.pamd %{buildroot}%{_sysconfdir}/pam.d/samba
+install -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/logrotate.d/samba
+echo 127.0.0.1 localhost > %{buildroot}%{_sysconfdir}/samba/lmhosts
+mkdir -p %{buildroot}%{_sysconfdir}/openldap/schema
+install -m644 examples/LDAP/samba.schema %{buildroot}%{_sysconfdir}/openldap/schema/samba.schema
 
 # winbind
-mkdir -p $RPM_BUILD_ROOT%{_libdir}
-install -m 755 nsswitch/libnss_winbind.so $RPM_BUILD_ROOT/%{_lib}/libnss_winbind.so.2
-ln -sf /%{_lib}/libnss_winbind.so.2  $RPM_BUILD_ROOT%{_libdir}/libnss_winbind.so
-install -m 755 nsswitch/libnss_wins.so $RPM_BUILD_ROOT/%{_lib}/libnss_wins.so.2
-ln -sf /%{_lib}/libnss_wins.so.2  $RPM_BUILD_ROOT%{_libdir}/libnss_wins.so
+mkdir -p %{buildroot}%{_libdir}
+install -m 755 nsswitch/libnss_winbind.so %{buildroot}/%{_lib}/libnss_winbind.so.2
+ln -sf /%{_lib}/libnss_winbind.so.2  %{buildroot}%{_libdir}/libnss_winbind.so
+install -m 755 nsswitch/libnss_wins.so %{buildroot}/%{_lib}/libnss_wins.so.2
+ln -sf /%{_lib}/libnss_wins.so.2  %{buildroot}%{_libdir}/libnss_wins.so
 
 # winbind krb5 locator
-#mkdir -p $RPM_BUILD_ROOT%{_libdir}/krb5/plugins/libkrb5
+#mkdir -p %{buildroot}%{_libdir}/krb5/plugins/libkrb5
 install -d -m 0755 %{buildroot}%{_libdir}/krb5/plugins/libkrb5
-install -m 755 source3/bin/winbind_krb5_locator.so $RPM_BUILD_ROOT/%{_libdir}/krb5/plugins/libkrb5/winbind_krb5_locator.so
+install -m 755 source3/bin/winbind_krb5_locator.so %{buildroot}/%{_libdir}/krb5/plugins/libkrb5/winbind_krb5_locator.so
 
 # libraries {
-mkdir -p $RPM_BUILD_ROOT%{_libdir} $RPM_BUILD_ROOT%{_includedir}
-build_libdir="$RPM_BUILD_ROOT%{_libdir}"
+mkdir -p %{buildroot}%{_libdir} %{buildroot}%{_includedir}
+build_libdir="%{buildroot}%{_libdir}"
 
 # make install puts libraries in the wrong place
 # (but at least gets the versioning right now)
@@ -386,64 +386,64 @@ for i in $list; do
 done
 
 
-/sbin/ldconfig -n $RPM_BUILD_ROOT%{_libdir}/
+/sbin/ldconfig -n %{buildroot}%{_libdir}/
 
 # }
 
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/xinetd.d
-install -m644 %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/xinetd.d/swat
+mkdir -p %{buildroot}%{_sysconfdir}/xinetd.d
+install -m644 %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/swat
 
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig
-install -m644 %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/samba
+mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
+install -m644 %{SOURCE4} %{buildroot}%{_sysconfdir}/sysconfig/samba
 
-install -m 755 %samba_source/lib/netapi/examples/bin/netdomjoin-gui $RPM_BUILD_ROOT/%{_sbindir}/netdomjoin-gui
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps/%{name}
-install -m 644 %samba_source/lib/netapi/examples/netdomjoin-gui/samba.ico $RPM_BUILD_ROOT/%{_datadir}/pixmaps/%{name}/samba.ico
-install -m 644 %samba_source/lib/netapi/examples/netdomjoin-gui/logo.png $RPM_BUILD_ROOT/%{_datadir}/pixmaps/%{name}/logo.png
-install -m 644 %samba_source/lib/netapi/examples/netdomjoin-gui/logo-small.png $RPM_BUILD_ROOT/%{_datadir}/pixmaps/%{name}/logo-small.png
+install -m 755 %samba_source/lib/netapi/examples/bin/netdomjoin-gui %{buildroot}/%{_sbindir}/netdomjoin-gui
+mkdir -p %{buildroot}%{_datadir}/pixmaps/%{name}
+install -m 644 %samba_source/lib/netapi/examples/netdomjoin-gui/samba.ico %{buildroot}/%{_datadir}/pixmaps/%{name}/samba.ico
+install -m 644 %samba_source/lib/netapi/examples/netdomjoin-gui/logo.png %{buildroot}/%{_datadir}/pixmaps/%{name}/logo.png
+install -m 644 %samba_source/lib/netapi/examples/netdomjoin-gui/logo-small.png %{buildroot}/%{_datadir}/pixmaps/%{name}/logo-small.png
 
-rm -f $RPM_BUILD_ROOT/%{_mandir}/man1/editreg.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/log2pcap.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/smbsh.1*
-#rm -f $RPM_BUILD_ROOT%{_mandir}/man1/smbget.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man5/smbgetrc.5*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/vfstest.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/testprns.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/smbmount.8*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/smbmnt.8*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/smbumount.8*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/{u,}mount.cifs.8*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/{u,}cifs.upcall.8*
+rm -f %{buildroot}/%{_mandir}/man1/editreg.1*
+rm -f %{buildroot}%{_mandir}/man1/log2pcap.1*
+rm -f %{buildroot}%{_mandir}/man1/smbsh.1*
+#rm -f %{buildroot}%{_mandir}/man1/smbget.1*
+rm -f %{buildroot}%{_mandir}/man5/smbgetrc.5*
+rm -f %{buildroot}%{_mandir}/man1/vfstest.1*
+rm -f %{buildroot}%{_mandir}/man1/testprns.1*
+rm -f %{buildroot}%{_mandir}/man8/smbmount.8*
+rm -f %{buildroot}%{_mandir}/man8/smbmnt.8*
+rm -f %{buildroot}%{_mandir}/man8/smbumount.8*
+rm -f %{buildroot}%{_mandir}/man8/{u,}mount.cifs.8*
+rm -f %{buildroot}%{_mandir}/man8/{u,}cifs.upcall.8*
 
-rm -f $RPM_BUILD_ROOT%{_sbindir}/{u,}mount.cifs
-rm -f $RPM_BUILD_ROOT%{_sbindir}/cifs.upcall
+rm -f %{buildroot}%{_sbindir}/{u,}mount.cifs
+rm -f %{buildroot}%{_sbindir}/cifs.upcall
 
-#rm -f $RPM_BUILD_ROOT%{_libdir}/libtalloc.so.*
-#rm -f $RPM_BUILD_ROOT%{_includedir}/talloc.h
-#rm -f $RPM_BUILD_ROOT%{_libdir}/libtalloc.so
-#rm -f $RPM_BUILD_ROOT%{_libdir}/pkgconfig/talloc.pc
+#rm -f %{buildroot}%{_libdir}/libtalloc.so.*
+#rm -f %{buildroot}%{_includedir}/talloc.h
+#rm -f %{buildroot}%{_libdir}/libtalloc.so
+#rm -f %{buildroot}%{_libdir}/pkgconfig/talloc.pc
 
-#rm -f $RPM_BUILD_ROOT%{_libdir}/libtdb.so.*
-#rm -f $RPM_BUILD_ROOT%{_includedir}/tdb.h
-#rm -f $RPM_BUILD_ROOT%{_libdir}/libtdb.so
-#rm -f $RPM_BUILD_ROOT%{_libdir}/pkgconfig/tdb.pc
-rm -f $RPM_BUILD_ROOT%{_bindir}/tdbbackup
-rm -f $RPM_BUILD_ROOT%{_bindir}/tdbdump
-rm -f $RPM_BUILD_ROOT%{_bindir}/tdbtool
-rm -f $RPM_BUILD_ROOT%{_bindir}/tdbrestore
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/tdbbackup.8*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/tdbdump.8*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/tdbtool.8*
+#rm -f %{buildroot}%{_libdir}/libtdb.so.*
+#rm -f %{buildroot}%{_includedir}/tdb.h
+#rm -f %{buildroot}%{_libdir}/libtdb.so
+#rm -f %{buildroot}%{_libdir}/pkgconfig/tdb.pc
+rm -f %{buildroot}%{_bindir}/tdbbackup
+rm -f %{buildroot}%{_bindir}/tdbdump
+rm -f %{buildroot}%{_bindir}/tdbtool
+rm -f %{buildroot}%{_bindir}/tdbrestore
+rm -f %{buildroot}%{_mandir}/man8/tdbbackup.8*
+rm -f %{buildroot}%{_mandir}/man8/tdbdump.8*
+rm -f %{buildroot}%{_mandir}/man8/tdbtool.8*
 
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/ldbadd.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/ldbdel.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/ldbedit.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/ldbmodify.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/ldbsearch.1*
-rm -f $RPM_BUILD_ROOT%{_mandir}/man1/ldbrename.1*
+rm -f %{buildroot}%{_mandir}/man1/ldbadd.1*
+rm -f %{buildroot}%{_mandir}/man1/ldbdel.1*
+rm -f %{buildroot}%{_mandir}/man1/ldbedit.1*
+rm -f %{buildroot}%{_mandir}/man1/ldbmodify.1*
+rm -f %{buildroot}%{_mandir}/man1/ldbsearch.1*
+rm -f %{buildroot}%{_mandir}/man1/ldbrename.1*
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 #%pre
 
