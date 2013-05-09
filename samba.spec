@@ -1,6 +1,5 @@
-#%define main_release 69
 %define main_release 0.1
-%define samba_version 3.6.12
+%define samba_version 3.6.13
 %define tdb_version 1.2.9
 %define talloc_version 2.0.5
 #%define pre_release %nil
@@ -586,6 +585,7 @@ exit 0
 %dir %{_sysconfdir}/samba
 %attr(0700,root,root) %dir /var/log/samba
 %attr(0700,root,root) %dir /var/log/samba/old
+%{_mandir}/man1/dbwrap_tool.1*
 %{_mandir}/man1/profiles.1*
 %{_mandir}/man1/smbcquotas.1*
 %{_mandir}/man1/smbcontrol.1*
@@ -671,6 +671,9 @@ exit 0
 %{_datadir}/pixmaps/samba/logo-small.png
 
 %changelog
+* Thu Apr 18 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.13-0.1
+- Update to 3.6.13
+
 * Sun Dec 23 2012 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.11-0.1
 - Update to 3.6.11
 
