@@ -10,7 +10,8 @@ LANG=C
 #MOCKS+=epel-4-i386
 
 MOCKS+=epel-6-x86_64
-MOCKS+=epel-5-x86_64
+# samba now requires libuuid, not available before RHEL 6
+#MOCKS+=epel-5-x86_64
 #MOCKS+=epel-4-x86_64
 
 SPEC := `ls *.spec | head -1`

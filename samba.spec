@@ -1,5 +1,5 @@
 %define main_release 0.1
-%define samba_version 3.6.13
+%define samba_version 3.6.16
 %define tdb_version 1.2.9
 %define talloc_version 2.0.5
 #%define pre_release %nil
@@ -18,7 +18,7 @@ License: GPLv3+ and LGPLv3+
 Group: System Environment/Daemons
 URL: http://www.samba.org/
 
-Source: http://www.samba.org/samba/ftp/stable/%{name}-%{samba_version}%{pre_release}.tar.gz
+Source: http://ftp.samba.org/pub/samba/%{name}-%{samba_version}%{pre_release}.tar.gz
 
 # Red Hat specific replacement-files
 Source1: samba.log
@@ -671,6 +671,12 @@ exit 0
 %{_datadir}/pixmaps/samba/logo-small.png
 
 %changelog
+* Thu Jul  4 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.16-0.1
+- Update to 3.6.16
+
+* Wed May  8 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.15-0.1
+- Update to 3.6.15
+
 * Thu Apr 18 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.13-0.1
 - Update to 3.6.13
 
