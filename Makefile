@@ -5,14 +5,14 @@
 # Assure that sorting is case sensitive
 LANG=C
 
-#MOCKS+=epel-6-i386
-#MOCKS+=epel-5-i386
-#MOCKS+=epel-4-i386
+#MOCKS+=samba4repo-6-i386
+#MOCKS+=samba4repo-5-i386
+#MOCKS+=samba4repo-4-i386
 
-MOCKS+=epel-6-x86_64
+MOCKS+=samba4repo-6-x86_64
 # samba now requires libuuid, not available before RHEL 6
-#MOCKS+=epel-5-x86_64
-#MOCKS+=epel-4-x86_64
+#MOCKS+=samba4repo-5-x86_64
+#MOCKS+=samba4repo-4-x86_64
 
 SPEC := `ls *.spec | head -1`
 PKGNAME := "`ls *.spec | head -1 | sed 's/.spec$$//g'`"
@@ -34,7 +34,7 @@ srpm:: verifyspec FORCE
 		-bs $(SPEC) --nodeps
 
 build:: srpm FORCE
-	rpmbuild --rebuild `ls *.src.rpm | grep -v ^epel-`
+	rpmbuild --rebuild `ls *.src.rpm | grep -v ^samba4repo-`
 
 $(MOCKS):: verifyspec FORCE
 	@if [ -e $@ -a -n "`find $@ -name \*.rpm`" ]; then \

@@ -1,7 +1,7 @@
 %define main_release 0.1
-%define samba_version 3.6.16
-%define tdb_version 1.2.9
-%define talloc_version 2.0.5
+%define samba_version 3.6.18
+%define tdb_version 1.2.12
+%define talloc_version 2.0.8
 #%define pre_release %nil
 #%define pre_release rc2
 %define pre_release %nil
@@ -671,6 +671,9 @@ exit 0
 %{_datadir}/pixmaps/samba/logo-small.png
 
 %changelog
+* Wed Aug 14 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.18-0.1
+- Update to 3.6.18
+
 * Thu Jul  4 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.16-0.1
 - Update to 3.6.16
 
