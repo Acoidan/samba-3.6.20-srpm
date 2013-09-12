@@ -18,7 +18,7 @@ License: GPLv3+ and LGPLv3+
 Group: System Environment/Daemons
 URL: http://www.samba.org/
 
-Source: http://ftp.samba.org/pub/samba/%{name}-%{samba_version}%{pre_release}.tar.gz
+Source: https://ftp.samba.org/pub/samba/%{name}-%{samba_version}%{pre_release}.tar.gz
 
 # Red Hat specific replacement-files
 Source1: samba.log
