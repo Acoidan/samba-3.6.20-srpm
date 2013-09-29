@@ -1,5 +1,5 @@
 %define main_release 0.1
-%define samba_version 3.6.18
+%define samba_version 3.6.19
 %define tdb_version 1.2.12
 %define talloc_version 2.0.8
 #%define pre_release %nil
@@ -282,6 +282,7 @@ CFLAGS="$RPM_OPT_FLAGS -D_GNU_SOURCE -DLDAP_DEPRECATED" %configure \
     --with-shared-modules=idmap_ad,idmap_rid,idmap_adex,idmap_hash,idmap_tdb2 \
     --with-cluster-support=auto \
     --with-libtalloc=no \
+    --with-libtevent=no \
     --enable-external-libtalloc=yes \
     --with-libtdb=no
 #    --enable-external-libtdb=yes \
@@ -671,6 +672,10 @@ exit 0
 %{_datadir}/pixmaps/samba/logo-small.png
 
 %changelog
+* Sat Sep 28 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.19-0.1
+- Update to 3.6.19
+- Add "--with-libtevent=no" to prevent local libtevent build
+
 * Wed Aug 14 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.18-0.1
 - Update to 3.6.18
 
