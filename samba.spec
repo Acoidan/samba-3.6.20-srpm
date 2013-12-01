@@ -1,5 +1,5 @@
 %define main_release 0.1
-%define samba_version 3.6.20
+%define samba_version 3.6.21
 %define tdb_version 1.2.12
 %define talloc_version 2.0.8
 #%define pre_release %nil
@@ -672,6 +672,9 @@ exit 0
 %{_datadir}/pixmaps/samba/logo-small.png
 
 %changelog
+* Sun Dec  1 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.21-0.1
+- Update to 3.6.21
+
 * Sat Sep 28 2013 Nico Kadel-Garcia <nkadel@gmail.com> - 3.6.19-0.1
 - Update to 3.6.19
 - Add "--with-libtevent=no" to prevent local libtevent build
