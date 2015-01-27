@@ -1,5 +1,7 @@
-These are config files suitable to building Samba 3.6.10 on RHEL or Fedora.
+These are config files suitable to building Samba 3.6.22 on RHEL or Fedora
 
 They are also suitable for Repoforge compilation.
 
-      	  	 Nico Kadel-Garcia
+Warning: this site is deprecated, since RHEL has caught up to version 3.6.23.
+
+      	  	 Nico Kadel-Garcia  <nkadel@gmail.com>
