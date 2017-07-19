@@ -9,6 +9,7 @@ LANG=C
 #MOCKS+=samba4repo-5-i386
 #MOCKS+=samba4repo-4-i386
 
+MOCKS+=epel-6-x86_64
 MOCKS+=samba4repo-6-x86_64
 # samba now requires libuuid, not available before RHEL 6
 #MOCKS+=samba4repo-5-x86_64
